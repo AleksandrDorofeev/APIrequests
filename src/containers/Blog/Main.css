@@ -1,37 +1,23 @@
-/* .Posts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
-} */
-
-.Blog .Nav {
+.Main .Nav {
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
-    /* text-align: center; */
     margin-bottom: 50px;
 }
 
-/* .Blog li {
-    display: inline-block;
-    margin: 20px;
-} */
-
-.Blog a {
+.BlMainog a {
     text-decoration: none;
     color: black;
 }
 
-.Blog a:hover,
-.Blog a:active,
-.Blog a.active {
+.Main a:hover,
+.Main a:active,
+.Main a.active {
     background-color: darkgreen;
 }
 
-.Blog .link {
+.Main .link {
     padding: 15px 40px;
     margin-left: 10px;
     color: #fff;
@@ -39,7 +25,7 @@
     border-radius: 5px;
 }
 
-.Blog h1 {
+.Main h1 {
     margin-bottom: 40px;
     margin-left: 10px;
 }

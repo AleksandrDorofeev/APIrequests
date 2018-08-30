@@ -1,52 +1,51 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
 import axios from '../../../axios';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { Redirect } from "react-router-dom";
 
-import './NewPost.css';
+import './NewRequest.css';
 
-class NewPost extends Component {
+const options = [
+    { value: 'dollar', label: 'USD' },
+    { value: 'euro', label: 'EUR' },
+  ];
+
+class NewRequest extends Component {
     state = {
-        price: '',
-        passengers: '',
-        author: 'Max',
         from: undefined,
         to: undefined,
+        passengers: '',
+        price: '',
+        selectedOption: null,
         error: false
-        // submitted: false
     }
     constructor(props) {
         super(props);
         this.handleDayClick = this.handleDayClick.bind(this);
-        // this.state = this.getInitialState();
       }
 
-    // getInitialState() {
-    //     return {
-    //       from: undefined,
-    //       to: undefined,
-    //     };
-    //   }
-    
     handleDayClick(day) {
         const range = DateUtils.addDayToRange(day, this.state);
         this.setState(range);
-    }  
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+      }  
 
     postDataHandler = () => {
         const post = {
-            price: this.state.price,
-            passengers: this.state.passengers,
-            author: this.state.author,
             date_from: this.state.from.toLocaleDateString("en-EU").split("/").reverse().join("/"),
-            date_until: this.state.to.toLocaleDateString("en-EU").split("/").reverse().join("/")
+            date_until: this.state.to.toLocaleDateString("en-EU").split("/").reverse().join("/"),
+            passengers: this.state.passengers,
+            price: this.state.price,
+            currency: this.state.selectedOption.label
         }
-        axios.post('/posts', post)
+        axios.post('/requests', post)
             .then(response => {
                 console.log(response);
-                this.props.history.push('/posts');
-                // this.setState({ submitted: true })
+                this.props.history.push('/requests');
             })
             .catch((error) => {
                 console.log(error)
@@ -55,20 +54,23 @@ class NewPost extends Component {
     }
 
     render () {
-        // let redirect = null;
-        // if(this.state.submitted) {
-        //     redirect = <Redirect to="/posts" />
-        // }
-        const { from, to } = this.state;
+        const { from, to, selectedOption } = this.state;
         const modifiers = { start: from, end: to };
 
         return (
-            <div className="NewPost">
-                {/* {redirect} */}
+            <div className="NewRequest">
                 <h1>Create request</h1>
                 <div>
                     <label className="price">Price</label>
                     <input type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                </div>
+                <div>
+                    <label className="currency">Currency</label>
+                    <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={options}
+                    />
                 </div>
                 <div>
                     <label className="passengers">Passengers</label>
@@ -98,4 +100,4 @@ class NewPost extends Component {
     }
 }
 
-export default NewPost;
+export default NewRequest;

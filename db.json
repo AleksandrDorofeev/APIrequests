@@ -1,0 +1,36 @@
+{
+  "requests": [
+    {
+      "date_from": "2018/9/8",
+      "date_until": "2018/29/8",
+      "passengers": "44",
+      "price": "777",
+      "currency": "EUR",
+      "id": "0oBo_nl"
+    },
+    {
+      "date_from": "2018/23/8",
+      "date_until": "2018/19/10",
+      "passengers": "4",
+      "price": "999",
+      "currency": "USD",
+      "id": "_7NUITa"
+    },
+    {
+      "date_from": "2018/22/8",
+      "date_until": "2018/25/8",
+      "passengers": "2",
+      "price": "12345",
+      "currency": "EUR",
+      "id": "7GcJP_k"
+    },
+    {
+      "date_from": "2018/20/8",
+      "date_until": "2018/28/8",
+      "passengers": "1",
+      "price": "654",
+      "currency": "USD",
+      "id": "XXDOAFC"
+    }
+  ]
+}

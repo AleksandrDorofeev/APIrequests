@@ -1,6 +1,5 @@
-.Post {
+.Request {
     display: flex;
-    /* width: 250px; */
     justify-content: space-around;
     padding: 16px;
     text-align: center;
@@ -11,12 +10,14 @@
     cursor: pointer;
 }
 
-.Post:hover,
-.Post:active {
+.Request:hover,
+.Request:active {
     background-color: #C0DDF5;
 }
 
-.Author {
+.Price,
+.Id,
+.Date,
+.Passengers {
     margin: 16px 0;
-    color: #ccc;
 }

@@ -1,13 +1,11 @@
-.Posts {
+.Requests {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50%;
-  /* margin: auto; */
+  width: 100%;
 }
 
 .title {
-  /* width: 50%; */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -19,8 +17,3 @@
   background-color: lightgray;
   border-radius: 5px;
 }
-
-/* .title li {
-  display: flex;
-  flex-direction: column;
-} */
