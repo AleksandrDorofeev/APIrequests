@@ -18,8 +18,9 @@ class NewRequest extends Component {
         passengers: '',
         price: '',
         selectedOption: null,
-        error: false
+        error: false,
     }
+
     constructor(props) {
         super(props);
         this.handleDayClick = this.handleDayClick.bind(this);
@@ -32,15 +33,16 @@ class NewRequest extends Component {
 
     handleChange = (selectedOption) => {
         this.setState({ selectedOption });
-      }  
+    }  
 
     postDataHandler = () => {
+        const { from, to, passengers, price, selectedOption } = this.state
         const post = {
-            date_from: this.state.from.toLocaleDateString("en-EU").split("/").reverse().join("/"),
-            date_until: this.state.to.toLocaleDateString("en-EU").split("/").reverse().join("/"),
-            passengers: this.state.passengers,
-            price: this.state.price,
-            currency: this.state.selectedOption.label
+            date_from: from.toLocaleDateString("en-EU").split("/").reverse().join("/"),
+            date_until: to.toLocaleDateString("en-EU").split("/").reverse().join("/"),
+            passengers: passengers,
+            price: price,
+            currency: selectedOption.label
         }
         axios.post('/requests', post)
             .then(response => {
@@ -54,7 +56,7 @@ class NewRequest extends Component {
     }
 
     render () {
-        const { from, to, selectedOption } = this.state;
+        const { from, to, price, selectedOption, passengers } = this.state;
         const modifiers = { start: from, end: to };
 
         return (
@@ -62,7 +64,7 @@ class NewRequest extends Component {
                 <h1>Create request</h1>
                 <div>
                     <label className="price">Price</label>
-                    <input type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
+                    <input type="text" value={price} onChange={(event) => this.setState({price: event.target.value})} />
                 </div>
                 <div>
                     <label className="currency">Currency</label>
@@ -74,7 +76,7 @@ class NewRequest extends Component {
                 </div>
                 <div>
                     <label className="passengers">Passengers</label>
-                    <input value={this.state.passengers} onChange={(event) => this.setState({passengers: event.target.value})} />
+                    <input value={passengers} onChange={(event) => this.setState({passengers: event.target.value})} />
                 </div>
                 <div>
                     <label className="time">From / Until</label>
@@ -88,7 +90,6 @@ class NewRequest extends Component {
                     </span>
                     <DayPicker
                         className="Selectable"
-                        numberOfMonths={this.props.numberOfMonths}
                         selectedDays={[from, { from, to }]}
                         modifiers={modifiers}
                         onDayClick={this.handleDayClick}

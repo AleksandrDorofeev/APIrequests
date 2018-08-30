@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../../axios';
-import { Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Post from '../../../components/Request/Request';
 import './Requests.css';
@@ -8,7 +8,6 @@ import './Requests.css';
 class Requests extends Component {
   state = {
     requests: [],
-    // selectedPostId: null,
     error: false
   }
 
